@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+export const maxDuration = 60; 
+export const dynamic = 'force-dynamic';
+
+
 // Initialize Gemini API
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
