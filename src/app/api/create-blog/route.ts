@@ -125,10 +125,10 @@ Final response should be proper markdown as given in below format.
             ],
         });
 
-        
+
         const result = await chatSession.sendMessage(prompt);
 
-        console.log(result.response);
+        console.log(JSON.stringify(result.response));
 
         const response = result.response.candidates ? result.response.candidates[0].content.parts[1].text : await result.response.text()
         return NextResponse.json({ content: response });
