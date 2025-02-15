@@ -22,6 +22,7 @@ import {
     Legend
 } from 'recharts';
 import { useRouter } from 'next/navigation';
+import GenerateFeedbackButton from '@/components/feedback-btn';
 
 export interface Response {
     question: string;
@@ -230,7 +231,7 @@ const ResultsHistory: React.FC = () => {
                     ) : (
                         <div className="space-y-4">
                             {results.map((result) => (
-                                <div key={result.timestamp} className="border rounded-lg">
+                                <div key={result.timestamp} className="border rounded-lg p-3">
                                     <Button
                                         variant="ghost"
                                         className="w-full flex items-center justify-between p-4 hover:bg-gray-50"
@@ -283,9 +284,12 @@ const ResultsHistory: React.FC = () => {
                                                 </div>
                                                 <div className="mt-4">
                                                     <p className="text-sm font-medium mb-2">Device Information</p>
-                                                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                                                        <Monitor className="w-4 h-4" />
-                                                        <span>{result.deviceInfo.platform} - {result.deviceInfo.language}</span>
+                                                    <div className="flex items-center justify-between gap-2 text-sm text-gray-600">
+                                                        <div>
+                                                            <Monitor className="w-4 h-4" />
+                                                            <span>{result.deviceInfo.platform} - {result.deviceInfo.language}</span>
+                                                        </div>
+                                                        <GenerateFeedbackButton data={JSON.stringify(result)} />
                                                     </div>
                                                 </div>
                                             </div>

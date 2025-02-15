@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { marked } from "marked";
 import { CopyButton } from "@/components/copy-button";
+import { redirect } from "next/navigation";
 
 const GeminiUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -108,7 +109,8 @@ const GeminiUploader = () => {
     setError("");
     setProgress(0);
   };
-
+  return redirect('/quadrat');
+  
   return (
     <TooltipProvider>
       <Card className="w-full max-w-md min-h-screen flex justify-center items-center border-none shadow-none mx-auto">
@@ -159,10 +161,10 @@ const GeminiUploader = () => {
                     <CheckCircle className="h-5 w-5 text-green-500" />
                     <div>
                       <p className="text-sm font-medium text-gray-900">
-                        {selectedFile.name}
+                        {/* {selectedFile.name} */}
                       </p>
                       <p className="text-xs text-gray-500">
-                        {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                        {/* {(selectedFile.size / 1024 / 1024).toFixed(2)} MB */}
                       </p>
                     </div>
                   </div>
