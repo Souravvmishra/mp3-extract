@@ -15,6 +15,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
 import FeedbackForm from '@/components/feedback-form';
+import { logout } from '@/lib/authFunctions';
 
 export interface TestResult {
     userId: string | undefined;
@@ -81,6 +82,9 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                     </Button>
                     <Button variant={'outline'} onClick={() => router.push('/quadrat/result')} className="w-full">
                         Report
+                    </Button>
+                    <Button variant={'destructive'} onClick={logout} className="w-full">
+                        Log out
                     </Button>
                 </CardContent>
             </Card>

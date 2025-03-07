@@ -1,5 +1,5 @@
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth, db } from './firebaseConfig';
 
 export const signInWithGoogle = async () => {
@@ -25,6 +25,13 @@ export const logout = async () => {
 };
 
 
+export async function signInWithEmail(email: string, password: string) {
+    return signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function signUpWithEmail(email: string, password: string) {
+    return createUserWithEmailAndPassword(auth, email, password);
+}
 
 interface TestResponse {
     question: string;
