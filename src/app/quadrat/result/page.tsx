@@ -31,6 +31,7 @@ export interface Response {
 }
 
 export interface TestResult {
+    id : string;
     userId: string | undefined;
     username: string | null | undefined;
     email: string | null | undefined;
@@ -70,9 +71,9 @@ const ResultsHistory: React.FC = () => {
                 );
                 const querySnapshot = await getDocs(q);
                 const data: TestResult[] = querySnapshot.docs.map((doc) => ({
+                    ...doc.data(),
                     id: doc.id,
-                    ...(doc.data() as Omit<TestResult, 'id'>),
-                }));
+                }) as unknown as TestResult);
                 setResults(data);
             } catch (error) {
                 console.error('Error fetching test results:', error);
@@ -289,7 +290,7 @@ const ResultsHistory: React.FC = () => {
                                                             <Monitor className="w-4 h-4" />
                                                             <span>{result.deviceInfo.platform} - {result.deviceInfo.language}</span>
                                                         </div>
-                                                        <GenerateFeedbackButton data={JSON.stringify(result)} />
+                                                        <GenerateFeedbackButton data={JSON.stringify(result)} id={result.id} />
                                                     </div>
                                                 </div>
                                             </div>

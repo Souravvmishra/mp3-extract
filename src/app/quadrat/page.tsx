@@ -16,6 +16,8 @@ import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
 import FeedbackForm from '@/components/feedback-form';
 import { logout } from '@/lib/authFunctions';
+import GetOverallFeedbackButton from '@/components/get-over-all-feedback';
+import GetStrongWeakFeedbackButton from '@/components/get-strong-weak-feedback';
 
 export interface TestResult {
     userId: string | undefined;
@@ -86,6 +88,8 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                     <Button variant={'destructive'} onClick={logout} className="w-full">
                         Log out
                     </Button>
+                    <GetOverallFeedbackButton />
+                    <GetStrongWeakFeedbackButton />
                 </CardContent>
             </Card>
         </motion.div>

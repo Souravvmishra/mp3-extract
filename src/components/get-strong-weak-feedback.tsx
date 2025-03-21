@@ -6,28 +6,15 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, Copy, Check, RefreshCw } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/providers/AuthProvider';
-import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebaseConfig';
 
-interface GenerateFeedbackButtonProps {
-    data: string;
-    buttonText?: string;
-    dialogTitle?: string;
-    id: string;
-}
-
-const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
-    buttonText = "Generate Feedback",
-    dialogTitle = "AI Generated Feedback",
-    id
-
-}) => {
+const GetStrongWeakFeedbackButton: React.FC = () => {
     const [open, setOpen] = useState(false);
     const [feedback, setFeedback] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
     const { user } = useAuth();
+
     const handleGenerateFeedback = async () => {
         setLoading(true);
         setFeedback(null);
@@ -35,46 +22,28 @@ const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
         setCopied(false);
 
         try {
-            const feedbackRef = collection(db, 'test_results');
-            const docRef = doc(feedbackRef, id);
-            const docSnap = await getDoc(docRef);
+            const url = new URL('https://ak0601-feedback-api.hf.space/get_strong_weak_topics');
+            url.searchParams.append('email', user?.email || '');
 
-            if (docSnap.exists() && docSnap.data().feedback) {
-                // If feedback already exists, use it
-                setFeedback(docSnap.data().feedback);
-                setOpen(true);
-            } else {
-                // Generate new feedback
-                const url = new URL('https://ak0601-feedback-api.hf.space/get_single_feedback');
-                url.searchParams.append('email', user?.email || '');
-                url.searchParams.append('test_id', id);
-
-                const res = await fetch(url.toString(), {
-                    method: 'POST',
-                    headers: {
-                        'accept': 'application/json'
-                    }
-                });
-
-                if (!res.ok) {
-                    throw new Error('Failed to generate feedback');
+            const res = await fetch(url.toString(), {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json'
                 }
+            });
 
-                const json = await res.json();
+            const json = await res.json();
 
-                // Save feedback to Firebase
-                await updateDoc(docRef, {
-                    feedback: json.feedback,
-                    feedback_generated_at: new Date().toLocaleString(),
-
-                });
-
-                setFeedback(json.feedback);
-                setOpen(true);
+            if (!res.ok || json.message) {
+                throw new Error(json.message || 'Failed to generate feedback');
             }
+
+            setFeedback(json.feedback);
+            setOpen(true);
         } catch (err: unknown) {
             console.error(err);
-            setError(err instanceof Error ? err.message : 'Something went wrong');
+            setFeedback(err instanceof Error ? err.message : 'Something went wrong');
+            setOpen(true);
         } finally {
             setLoading(false);
         }
@@ -97,25 +66,23 @@ const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
             <Button
                 onClick={handleGenerateFeedback}
                 disabled={loading}
-                className="transition transform hover:scale-105 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="transition transform bg-zinc-600 hover:scale-105 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
                 size="sm"
             >
                 {loading ? (
                     <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Generating...
+                        Analyzing Topics...
                     </>
                 ) : (
-                    <>
-                        {buttonText}
-                    </>
+                    "Get Strong/Weak Topics"
                 )}
             </Button>
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="max-w-3xl h-[80vh]">
                     <DialogHeader>
-                        <DialogTitle className="text-xl font-semibold">{dialogTitle}</DialogTitle>
+                        <DialogTitle className="text-xl font-semibold">Topic Analysis</DialogTitle>
                     </DialogHeader>
 
                     <ScrollArea className="flex-1 h-full px-4">
@@ -140,7 +107,7 @@ const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
 
                         {error && (
                             <Alert variant="destructive" className="my-4">
-                                <AlertTitle>Generation Failed</AlertTitle>
+                                <AlertTitle>Analysis Failed</AlertTitle>
                                 <AlertDescription className="mt-2">
                                     {error}
                                     <Button
@@ -177,7 +144,6 @@ const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
                                     </>
                                 )}
                             </Button>
-
                         </DialogFooter>
                     )}
                 </DialogContent>
@@ -186,4 +152,4 @@ const GenerateFeedbackButton: React.FC<GenerateFeedbackButtonProps> = ({
     );
 };
 
-export default GenerateFeedbackButton;
+export default GetStrongWeakFeedbackButton;
