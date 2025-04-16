@@ -10,12 +10,12 @@ import { Label } from '@/components/ui/label';
 import { Alert } from '@/components/ui/alert';
 import { useAuth } from '@/providers/AuthProvider';
 import { Timer, Brain, CheckCircle2, XCircle, Trophy } from 'lucide-react';
-import { db } from '@/lib/firebaseConfig';
+import { db } from '../../hooks/lib/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
 import FeedbackForm from '@/components/feedback-form';
-import { logout } from '@/lib/authFunctions';
+import { logout } from '../../hooks/lib/authFunctions';
 import GetOverallFeedbackButton from '@/components/get-over-all-feedback';
 import GetStrongWeakFeedbackButton from '@/components/get-strong-weak-feedback';
 

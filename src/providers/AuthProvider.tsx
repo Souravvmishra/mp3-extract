@@ -2,7 +2,7 @@
 
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '@/lib/firebaseConfig';
+import { auth } from '../hooks/lib/firebaseConfig';
 import { useRouter } from 'next/navigation';
 
 // 1. Create Context

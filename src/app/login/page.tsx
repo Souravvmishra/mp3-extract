@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { redirect, useRouter } from 'next/navigation';
-import { signInWithGoogle, signInWithEmail, signUpWithEmail } from '@/lib/authFunctions';
+import { signInWithGoogle, signInWithEmail, signUpWithEmail } from '../../hooks/lib/authFunctions';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

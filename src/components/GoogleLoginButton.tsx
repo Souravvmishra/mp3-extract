@@ -1,6 +1,6 @@
 'use client';
 
-import { signInWithGoogle } from '@/lib/authFunctions';
+import { signInWithGoogle } from '../hooks/lib/authFunctions';
 import { useRouter } from 'next/navigation';
 
 export default function GoogleLoginButton() {

@@ -1,4 +1,4 @@
-import { questions } from '@/lib/questions';
+import { questions } from '../../../hooks/lib/questions';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { db } from '@/lib/firebaseConfig';
+import { db } from '../../../hooks/lib/firebaseConfig';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { useAuth } from '@/providers/AuthProvider';
 import { Loader, Trophy, Clock, Brain, TrendingUp, ChevronDown, ChevronUp, Monitor, ArrowLeft } from 'lucide-react';
@@ -31,7 +31,7 @@ export interface Response {
 }
 
 export interface TestResult {
-    id : string;
+    id: string;
     userId: string | undefined;
     username: string | null | undefined;
     email: string | null | undefined;

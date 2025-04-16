@@ -7,7 +7,7 @@ import { Loader2, Copy, Check, RefreshCw } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/providers/AuthProvider';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebaseConfig';
+import { db } from '../hooks/lib/firebaseConfig';
 
 interface GenerateFeedbackButtonProps {
     data: string;
