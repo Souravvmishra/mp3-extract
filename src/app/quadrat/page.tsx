@@ -396,6 +396,7 @@ const TestPage = () => {
                         language: navigator.language,
                     },
                 };
+                // console.log(testData)
 
                 // Save to Firebase
                 const docRef = await addDoc(collection(db, 'test_results'), testData);
