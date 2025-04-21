@@ -9,9 +9,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { MessageSquare } from 'lucide-react';
 import { useAuth } from '@/providers/AuthProvider';
-import { db } from '../hooks/lib/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import { toast } from '@/hooks/use-toast';
+import { db } from '@/hooks/lib/firebaseConfig';
 
 export interface FeedbackData {
     userId: string | undefined;

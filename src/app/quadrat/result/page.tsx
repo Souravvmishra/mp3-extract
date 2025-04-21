@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { db } from '../../../hooks/lib/firebaseConfig';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { useAuth } from '@/providers/AuthProvider';
 import { Loader, Trophy, Clock, Brain, TrendingUp, ChevronDown, ChevronUp, Monitor, ArrowLeft } from 'lucide-react';
@@ -23,6 +22,7 @@ import {
 } from 'recharts';
 import { useRouter } from 'next/navigation';
 import GenerateFeedbackButton from '@/components/feedback-btn';
+import { db } from '@/hooks/lib/firebaseConfig';
 
 export interface Response {
     question: string;
@@ -50,6 +50,11 @@ export interface TestResult {
         platform: string;
         language: string;
     };
+    metadata?: {
+        category: string,
+        topic: string,
+        difficulty: string
+    }
 }
 
 const ResultsHistory: React.FC = () => {
@@ -281,6 +286,18 @@ const ResultsHistory: React.FC = () => {
                                                     <div>
                                                         <p className="text-gray-600">Avg Time/Question</p>
                                                         <p className="font-medium">{result.averageTimePerQuestion.toFixed(1)}s</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-gray-600">Category</p>
+                                                        <p className="font-medium">{result.metadata?.category || 'N/A'}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-gray-600">Difficulty</p>
+                                                        <p className="font-medium">{result.metadata?.difficulty || 'N/A'}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-gray-600">Topic</p>
+                                                        <p className="font-medium">{result.metadata?.topic || 'N/A'}</p>
                                                     </div>
                                                 </div>
                                                 <div className="mt-4">

@@ -24,6 +24,52 @@ import SenetenceCompletion_questions_hard_50 from './data/Verbal/Senetence Compl
 import SenetenceCompletion_questions_medium_50 from './data/Verbal/Senetence Completion/medium.json'
 
 
+// Category Enum
+export enum Category {
+  Quant = 'quant',
+  Verbal = 'Verbal',
+}
+
+// Topics under Quant
+export enum QuantTopic {
+  Algebraic = 'Algebra',
+  Arithmetic = 'Arithmetic',
+  Geometry = 'Geometry',
+  Statistics = 'Statistics',
+}
+
+// Topics under Verbal
+export enum VerbalTopic {
+  Analogy = 'Analogy',
+  SentenceCompletion = 'Sentence Completion',
+}
+
+// Difficulty Type
+export type Difficulty = 'easy' | 'medium' | 'hard';
+
+// Common Question Interface
+interface BaseQuestion {
+  question: string;
+  option_1: string;
+  option_2: string;
+  option_3: string;
+  option_4: string;
+  correct_answer: string;
+  explanation: string;
+  difficulty: Difficulty;
+}
+
+// Discriminated Union for Category-Topic Mapping
+export type Question =
+  | (BaseQuestion & {
+      category: Category.Quant;
+      topic: QuantTopic;
+    })
+  | (BaseQuestion & {
+      category: Category.Verbal;
+      topic: VerbalTopic;
+    });
+
 
 
 

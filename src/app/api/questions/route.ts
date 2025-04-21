@@ -1,12 +1,25 @@
-import { questions } from '../../../hooks/lib/questions';
+import { questions } from '@/hooks/lib/questions';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(req: Request) {
     try {
-        // Replicate Python's random.sample logic
-        const shuffledQuestions = [...questions]
+        const { searchParams } = new URL(req.url);
+        const category = searchParams.get('category');
+        const topic = searchParams.get('topic');
+        const difficulty = searchParams.get('difficulty');
+
+        // Filter based on query params if provided
+        const filteredQuestions = questions.filter((q) => {
+            const matchCategory = category ? q.category === category : true;
+            const matchTopic = topic ? q.topic === topic : true;
+            const matchDifficulty = difficulty ? q.difficulty === difficulty : true;
+            return matchCategory && matchTopic && matchDifficulty;
+        });
+
+        const shuffledQuestions = [...filteredQuestions]
             .sort(() => Math.random() - 0.5)
             .slice(0, 10);
+        console.log(shuffledQuestions);
 
         return NextResponse.json(shuffledQuestions);
     } catch (error) {
