@@ -16,6 +16,7 @@ import {
 import { marked } from "marked";
 import { CopyButton } from "@/components/copy-button";
 import { redirect } from "next/navigation";
+import { useAuth } from "@/providers/AuthProvider";
 
 const GeminiUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -24,7 +25,8 @@ const GeminiUploader = () => {
   const [data, setData] = useState<string>("");
   const [isDragOver, setIsDragOver] = useState(false);
   const [error, setError] = useState<string>("");
-
+  const { role } = useAuth();
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -109,7 +111,7 @@ const GeminiUploader = () => {
     setError("");
     setProgress(0);
   };
-  return redirect('/quadrat');
+  return redirect(role === 'teacher' ? '/teacher' : '/student/quadrat');
   
   return (
     <TooltipProvider>

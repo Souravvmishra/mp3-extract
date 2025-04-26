@@ -10,16 +10,19 @@ export async function GET(req: Request) {
 
         // Filter based on query params if provided
         const filteredQuestions = questions.filter((q) => {
-            const matchCategory = category ? q.category === category : true;
-            const matchTopic = topic ? q.topic === topic : true;
+            // Handle category: if "all", include all categories; otherwise, match specific category
+            const matchCategory = category && category !== 'all' ? q.category === category : true;
+            // Handle topic: if "all", include all topics; otherwise, match specific topic
+            const matchTopic = topic && topic !== 'all' ? q.topic === topic : true;
+            // Handle difficulty: match specific difficulty if provided
             const matchDifficulty = difficulty ? q.difficulty === difficulty : true;
             return matchCategory && matchTopic && matchDifficulty;
         });
 
+        // Shuffle and limit to 10 questions
         const shuffledQuestions = [...filteredQuestions]
             .sort(() => Math.random() - 0.5)
-            .slice(0, 10);
-        console.log(shuffledQuestions);
+            .slice(0, Math.min(10, filteredQuestions.length));
 
         return NextResponse.json(shuffledQuestions);
     } catch (error) {

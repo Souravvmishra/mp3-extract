@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { signInWithGoogle, signInWithEmail, signUpWithEmail } from '../../hooks/lib/authFunctions';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,19 +20,22 @@ export default function AuthPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { user } = useAuth();
+    const { user, role } = useAuth();
 
     useEffect(() => {
-        if (user) {
-            redirect('/quadrat')
+        if (user && role) {
+            const targetPath = role === 'teacher' ? '/teacher' : '/student/quadrat';
+            router.push(targetPath);
         }
-    }, [user])
+    }, [user, role, router]);
+
 
     const handleGoogleAuth = async () => {
         try {
             setLoading(true);
             await signInWithGoogle();
-            router.push('/quadrat');
+            const targetPath = role === 'teacher' ? '/teacher' : '/student/quadrat';
+            router.push(targetPath);
         } catch (error) {
             console.error('Google authentication failed', error);
             setError('Google authentication failed. Please try again.');
@@ -48,7 +51,8 @@ export default function AuthPage() {
 
         try {
             await signInWithEmail(email, password);
-            router.push('/quadrat');
+            const targetPath = role === 'teacher' ? '/teacher' : '/student/quadrat';
+            router.push(targetPath);
         } catch (error) {
             console.error('Login failed', error);
             setError('Login failed. Please verify your credentials and try again.');
@@ -70,7 +74,8 @@ export default function AuthPage() {
 
         try {
             await signUpWithEmail(email, password);
-            router.push('/quadrat');
+            const targetPath = role === 'teacher' ? '/teacher' : '/student/quadrat';
+            router.push(targetPath);
         } catch (error) {
             console.error('Sign up failed', error);
             setError('Sign up failed. Please check your information and try again.');

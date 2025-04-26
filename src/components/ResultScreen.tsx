@@ -82,7 +82,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    onClick={() => router.push("/quadrat/result")}
+                                    onClick={() => router.push("/student/quadrat/result")}
                                     className="w-full"
                                 >
                                     View Reports
