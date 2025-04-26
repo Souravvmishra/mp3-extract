@@ -174,7 +174,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
 
                     <TabsContent value="resources" className="mt-0">
                         <CardContent className="space-y-3 pt-2">
-                            <Link href="/flash-cards" className="block">
+                            <Link href="/student/flash-cards" className="block">
                                 <Button variant="outline" className="w-full flex justify-between items-center">
                                     <div className="flex items-center">
                                         <BookOpen className="mr-2 h-4 w-4" />
