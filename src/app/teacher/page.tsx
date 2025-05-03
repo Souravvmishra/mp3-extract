@@ -36,6 +36,8 @@ import {
 } from "@/components/ui/command";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogOut } from "lucide-react";
+import { logout } from "@/hooks/lib/authFunctions";
 
 interface UserOption {
     uid: string;
@@ -175,16 +177,33 @@ const TeacherDashboard: React.FC = () => {
             lastTestDate: last.toLocaleDateString(),
         };
     });
+    
 
     return (
         <div className="max-w-4xl mx-auto p-4 space-y-6">
             {/* Teacher Info */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-                <p>
-                    <strong>Teacher:</strong> {user?.displayName || user?.email}
-                </p>
-                <p className="text-sm text-gray-600">{user?.email}</p>
+            <div className="p-4 bg-white rounded-xl shadow-sm flex items-center justify-between">
+                <div>
+                    <p className="text-sm text-gray-500">Logged in as</p>
+                    <p className="font-medium text-gray-800">
+                        {user?.displayName || user?.email}
+                    </p>
+                    {user?.displayName && (
+                        <p className="text-sm text-gray-600">{user?.email}</p>
+                    )}
+                </div>
+
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={logout}
+                    className="ml-4 text-xs text-red-600 border-red-200 hover:bg-red-50"
+                >
+                    <LogOut className="mr-1 h-3 w-3" />
+                    Log out
+                </Button>
             </div>
+
 
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">Teacher Dashboard</h1>
