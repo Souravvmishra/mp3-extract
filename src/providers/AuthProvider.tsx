@@ -6,9 +6,14 @@ import { auth, db } from '@/hooks/lib/firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Define user role type
-type UserRole = 'student' | 'teacher' | null;
+export type UserRole = 'student' | 'teacher' | null;
 
-// 1. Create Context with role info
+// Define localStorage keys
+const LOCAL_STORAGE_KEY = 'loclatsoreg';
+const USER_ROLE_KEY = 'userRole';
+const USER_EMAIL_KEY = 'userEmail';
+
+// 1. Create Context with Auth info
 interface AuthContextType {
     user: User | null;
     loading: boolean;
@@ -31,118 +36,127 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     const router = useRouter();
     const pathname = usePathname();
     const isLoginPage = pathname === '/login';
-    
-    // Function to save user role to Firestore
+
+    // Save user role & profile to Firestore and flag localStorage
     const saveUserRole = async (newRole: UserRole) => {
         if (!user || !newRole) return;
-
+        setLoading(true);
         try {
-            await setDoc(doc(db, 'userRoles', user.uid), {
+            const userData = {
                 role: newRole,
-                updatedAt: new Date().toISOString()
-            }, { merge: true });
-
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                updatedAt: new Date().toISOString(),
+            };
+            await setDoc(doc(db, 'userRoles', user.uid), userData, { merge: true });
             setRole(newRole);
+            window.localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+            window.localStorage.setItem(USER_ROLE_KEY, newRole);
+            if (user.email) window.localStorage.setItem(USER_EMAIL_KEY, user.email);
             setShowRoleModal(false);
         } catch (error) {
-            console.error("Error setting user role:", error);
+            console.error('Error setting user role:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
-    // Fetch user role from Firestore
-    const fetchUserRole = async (userId: string) => {
+    // Fetch user profile & role from Firestore
+    const fetchUserProfile = async (uid: string) => {
         try {
-            const docRef = doc(db, 'userRoles', userId);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                const userData = docSnap.data();
-                setRole(userData.role as UserRole);
-                setLoading(false);
+            const ref = doc(db, 'userRoles', uid);
+            const snap = await getDoc(ref);
+            if (snap.exists()) {
+                const data = snap.data();
+                const savedRole = data.role as UserRole;
+                const savedEmail = data.email as string | undefined;
+                // ensure both role and email exist
+                if (savedRole && savedEmail) {
+                    setRole(savedRole);
+                    window.localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+                    window.localStorage.setItem(USER_ROLE_KEY, savedRole);
+                    window.localStorage.setItem(USER_EMAIL_KEY, savedEmail);
+                } else {
+                    // missing info, prompt
+                    setShowRoleModal(true);
+                }
             } else {
-                // If no role is found, show the modal and stop loading
                 setShowRoleModal(true);
-                setLoading(false);
             }
         } catch (error) {
-            console.error("Error fetching user role:", error);
+            console.error('Error fetching user profile:', error);
+            setShowRoleModal(true);
+        } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (!user) {
+        const unsubscribe = onAuthStateChanged(auth, (fbUser) => {
+            if (!fbUser) {
                 router.push('/login');
+                setUser(null);
                 setRole(null);
                 setLoading(false);
                 return;
             }
-
-            setUser(user);
-            fetchUserRole(user.uid);
+            setUser(fbUser);
+            const hasSaved = window.localStorage.getItem(LOCAL_STORAGE_KEY) === 'true';
+            const savedRole = window.localStorage.getItem(USER_ROLE_KEY) as UserRole;
+            const savedEmail = window.localStorage.getItem(USER_EMAIL_KEY);
+            // check localStorage and current auth email match
+            if (hasSaved && savedRole && savedEmail === fbUser.email) {
+                setRole(savedRole);
+                setLoading(false);
+            } else {
+                fetchUserProfile(fbUser.uid);
+            }
         });
-
         return () => unsubscribe();
     }, [router]);
 
     // Handle role submission
     const handleRoleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (selectedRole) {
-            setLoading(true);
-            await saveUserRole(selectedRole);
-            setLoading(false);
-        }
+        if (selectedRole) await saveUserRole(selectedRole);
     };
 
-    // Custom Modal Component (similar to Shadcn but without dependencies)
+    // Role selection modal
     const RoleSelectionModal = () => {
         if (!showRoleModal || !user) return null;
-
         return (
             <div className="fixed inset-0 bg-black backdrop-blur-sm flex items-center justify-center z-50">
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full mx-4 overflow-hidden">
                     <div className="p-6">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Select Your Role</h2>
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                            Please select whether you are a student or teacher.
-                        </p>
-
-                        <form onSubmit={handleRoleSubmit} className="mt-6">
-                            <div className="space-y-4">
-                                <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <input
-                                        type="radio"
-                                        name="role"
-                                        className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                                        onChange={() => setSelectedRole('student')}
-                                        checked={selectedRole === 'student'}
-                                    />
-                                    <span className="ml-2 font-medium">Student</span>
-                                </label>
-
-                                <label className="flex items-center p-3 border rounded-md cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <input
-                                        type="radio"
-                                        name="role"
-                                        className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                                        onChange={() => setSelectedRole('teacher')}
-                                        checked={selectedRole === 'teacher'}
-                                    />
-                                    <span className="ml-2 font-medium">Teacher</span>
-                                </label>
-                            </div>
-
-                            <div className="mt-6">
-                                <button
-                                    type="submit"
-                                    disabled={!selectedRole}
-                                    className="w-full px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                >
-                                    Continue
-                                </button>
-                            </div>
+                        <h2 className="text-xl font-semibold">Select Your Role</h2>
+                        <p className="mt-2 text-sm">Please select whether you are a student or teacher.</p>
+                        <form onSubmit={handleRoleSubmit} className="mt-6 space-y-4">
+                            <label className="flex items-center p-3 border rounded-md cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    onChange={() => setSelectedRole('student')}
+                                    checked={selectedRole === 'student'}
+                                />
+                                <span className="ml-2">Student</span>
+                            </label>
+                            <label className="flex items-center p-3 border rounded-md cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    onChange={() => setSelectedRole('teacher')}
+                                    checked={selectedRole === 'teacher'}
+                                />
+                                <span className="ml-2">Teacher</span>
+                            </label>
+                            <button
+                                type="submit"
+                                disabled={!selectedRole}
+                                className="w-full py-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
+                            >
+                                Continue
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -150,26 +164,22 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         );
     };
 
-    // Show loading state
+    // Loading state
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
-                <span className="ml-3 text-gray-600 dark:text-gray-300">Loading...</span>
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600" />
+                <span className="ml-3">Loading...</span>
             </div>
         );
     }
 
-
     return (
-        <>
-
-            <AuthContext.Provider value={{ user, loading, role }}>
-                {isLoginPage || (user && role) ? children : <RoleSelectionModal />}
-            </AuthContext.Provider>
-        </>
+        <AuthContext.Provider value={{ user, loading, role }}>
+            {isLoginPage || (user && role) ? children : <RoleSelectionModal />}
+        </AuthContext.Provider>
     );
 }
 
-// 3. Custom Hook for easy access
+// 3. Custom Hook
 export const useAuth = () => useContext(AuthContext);

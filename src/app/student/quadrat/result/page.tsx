@@ -32,9 +32,9 @@ export interface Response {
 
 export interface TestResult {
     id: string;
-    userId: string | undefined;
-    username: string | null | undefined;
-    email: string | null | undefined;
+    userId: string;
+    username: string | null;
+    email: string | null;
     timestamp: string;
     responses: Response[];
     score: number;

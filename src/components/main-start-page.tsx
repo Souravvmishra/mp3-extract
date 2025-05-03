@@ -20,6 +20,7 @@ import GetStrongWeakFeedbackButton from '@/components/get-strong-weak-feedback';
 // Utilities
 import { logout } from "@/hooks/lib/authFunctions";
 import { Difficulty, QuantTopic, VerbalTopic } from "@/hooks/lib/questions";
+import { useAuth } from "@/providers/AuthProvider";
 
 interface StartScreenProps {
     onStart: (category: string, topic: string, difficulty: Difficulty) => void;
@@ -27,7 +28,7 @@ interface StartScreenProps {
 
 const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
     const router = useRouter();
-
+    const { role } = useAuth();
     // State management
     const [activeTab, setActiveTab] = useState("challenge");
     const [category, setCategory] = useState<string | null>(null);
@@ -100,7 +101,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                             <Brain className="w-8 h-8" />
                         </div>
                     </motion.div>
-                    <CardTitle className="text-2xl font-bold">Knowledge Master</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Quadrat</CardTitle>
                     <CardDescription className="text-neutral-900">Challenge yourself or browse resources</CardDescription>
                 </CardHeader>
 
@@ -221,9 +222,14 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                         <LogOut className="mr-2 h-4 w-4" />
                         Log out
                     </Button>
-                </CardFooter>
-            </Card>
-        </motion.div>
+                    {role === 'teacher' && <Button variant="outline" onClick={logout} className="w-full flex items-center justify-center">
+                        <Link href="/teacher">
+                            Go to Teacher Dashboard
+                        </Link>
+                    </Button>}
+            </CardFooter>
+        </Card>
+        </motion.div >
     );
 };
 

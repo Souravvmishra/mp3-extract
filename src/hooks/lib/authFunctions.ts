@@ -18,6 +18,9 @@ export const signInWithGoogle = async () => {
 export const logout = async () => {
     try {
         await signOut(auth);
+        // Clear local storage or any other cleanup if necessary
+        window.localStorage.removeItem('userRole');
+        window.localStorage.removeItem('loclatsoreg');
         console.log('User logged out');
     } catch (error) {
         console.error('Logout error:', error);
