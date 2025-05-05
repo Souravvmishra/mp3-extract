@@ -7,7 +7,7 @@
         "option_4": "360 degrees",
         "correct_answer": "180 degrees",
         "explanation": "The sum of the interior angles of a triangle is always 180 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -19,7 +19,7 @@
         "option_4": "5",
         "correct_answer": "4",
         "explanation": "A quadrilateral is a polygon with four sides.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -31,7 +31,7 @@
         "option_4": "Hexagon",
         "correct_answer": "Pentagon",
         "explanation": "A polygon with five sides is called a pentagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -43,7 +43,7 @@
         "option_4": "25 cm",
         "correct_answer": "20 cm",
         "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. For a square with each side measuring 5 cm, the perimeter is 5 cm + 5 cm + 5 cm + 5 cm = 20 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -55,7 +55,7 @@
         "option_4": "30 cm\u00b2",
         "correct_answer": "24 cm\u00b2",
         "explanation": "The area of a rectangle is calculated by multiplying its length by its width. For a rectangle with length 6 cm and width 4 cm, the area is 6 cm * 4 cm = 24 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -67,7 +67,7 @@
         "option_4": "12 cm",
         "correct_answer": "6 cm",
         "explanation": "The diameter of a circle is twice the length of its radius. For a circle with a radius of 3 cm, the diameter is 2 * 3 cm = 6 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -79,7 +79,7 @@
         "option_4": "Right",
         "correct_answer": "Equilateral",
         "explanation": "A triangle with all sides of equal length is called an equilateral triangle.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -91,7 +91,7 @@
         "option_4": "36 cm\u00b3",
         "correct_answer": "27 cm\u00b3",
         "explanation": "The volume of a cube is calculated by cubing the length of one of its sides. For a cube with each side measuring 3 cm, the volume is 3 cm * 3 cm * 3 cm = 27 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -103,7 +103,7 @@
         "option_4": "Secant",
         "correct_answer": "Tangent",
         "explanation": "A line that touches a circle at exactly one point is called a tangent.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -115,7 +115,7 @@
         "option_4": "Nonagon",
         "correct_answer": "Octagon",
         "explanation": "A polygon with eight sides is called an octagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -127,7 +127,7 @@
         "option_4": "360 degrees",
         "correct_answer": "180 degrees",
         "explanation": "The sum of the interior angles of a triangle is always 180 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -139,7 +139,7 @@
         "option_4": "5",
         "correct_answer": "4",
         "explanation": "A quadrilateral is a polygon with four sides.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -151,7 +151,7 @@
         "option_4": "Hexagon",
         "correct_answer": "Pentagon",
         "explanation": "A polygon with five sides is called a pentagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -163,7 +163,7 @@
         "option_4": "25 cm",
         "correct_answer": "20 cm",
         "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. For a square with each side measuring 5 cm, the perimeter is 5 cm x 4 = 20 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -175,7 +175,7 @@
         "option_4": "30 cm\u00b2",
         "correct_answer": "24 cm\u00b2",
         "explanation": "The area of a rectangle is calculated by multiplying its length by its width. For a rectangle with a length of 6 cm and a width of 4 cm, the area is 6 cm x 4 cm = 24 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -187,7 +187,7 @@
         "option_4": "12 cm",
         "correct_answer": "6 cm",
         "explanation": "The diameter of a circle is twice the length of its radius. For a circle with a radius of 3 cm, the diameter is 3 cm x 2 = 6 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -199,7 +199,7 @@
         "option_4": "62.8 cm",
         "correct_answer": "31.4 cm",
         "explanation": "The circumference of a circle is calculated by multiplying its diameter by \u03c0 (pi). For a circle with a diameter of 10 cm, the circumference is 10 cm x 3.14 = 31.4 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -211,7 +211,7 @@
         "option_4": "Cone",
         "correct_answer": "Cube",
         "explanation": "A three-dimensional shape with six square faces is called a cube.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -223,7 +223,7 @@
         "option_4": "36 cm\u00b3",
         "correct_answer": "27 cm\u00b3",
         "explanation": "The volume of a cube is calculated by cubing the length of one of its sides. For a cube with each side measuring 3 cm, the volume is 3 cm x 3 cm x 3 cm = 27 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -235,7 +235,7 @@
         "option_4": "Tangent",
         "correct_answer": "Diameter",
         "explanation": "A diameter is a straight line that passes through the center of a circle and divides it into two equal parts.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -247,7 +247,7 @@
         "option_4": "360 degrees",
         "correct_answer": "180 degrees",
         "explanation": "The sum of the interior angles of a triangle is always 180 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -259,7 +259,7 @@
         "option_4": "5",
         "correct_answer": "4",
         "explanation": "A quadrilateral is a polygon with four sides.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -271,7 +271,7 @@
         "option_4": "Hexagon",
         "correct_answer": "Pentagon",
         "explanation": "A polygon with five sides is called a pentagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -283,7 +283,7 @@
         "option_4": "25 cm",
         "correct_answer": "20 cm",
         "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. For a square with each side measuring 5 cm, the perimeter is 5 cm x 4 = 20 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -295,7 +295,7 @@
         "option_4": "30 cm\u00b2",
         "correct_answer": "24 cm\u00b2",
         "explanation": "The area of a rectangle is calculated by multiplying its length by its width. For a rectangle with a length of 6 cm and a width of 4 cm, the area is 6 cm x 4 cm = 24 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -307,7 +307,7 @@
         "option_4": "12 cm",
         "correct_answer": "6 cm",
         "explanation": "The diameter of a circle is twice the length of its radius. For a circle with a radius of 3 cm, the diameter is 3 cm x 2 = 6 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -319,7 +319,7 @@
         "option_4": "62.8 cm",
         "correct_answer": "31.4 cm",
         "explanation": "The circumference of a circle is calculated by multiplying its diameter by \u03c0 (pi). For a circle with a diameter of 10 cm, the circumference is 10 cm x 3.14 = 31.4 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -331,7 +331,7 @@
         "option_4": "36 cm\u00b3",
         "correct_answer": "27 cm\u00b3",
         "explanation": "The volume of a cube is calculated by cubing the length of one of its sides. For a cube with each side measuring 3 cm, the volume is 3 cm x 3 cm x 3 cm = 27 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -343,7 +343,7 @@
         "option_4": "Right",
         "correct_answer": "Equilateral",
         "explanation": "A triangle with all sides of equal length is called an equilateral triangle.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -355,7 +355,7 @@
         "option_4": "Equilateral",
         "correct_answer": "Right",
         "explanation": "A triangle with one angle measuring 90 degrees is called a right triangle.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -367,7 +367,7 @@
         "option_4": "360 degrees",
         "correct_answer": "180 degrees",
         "explanation": "The sum of the interior angles of a triangle is always 180 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -379,7 +379,7 @@
         "option_4": "5",
         "correct_answer": "4",
         "explanation": "A quadrilateral is a polygon with four sides.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -391,7 +391,7 @@
         "option_4": "Hexagon",
         "correct_answer": "Pentagon",
         "explanation": "A polygon with five sides is called a pentagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -403,7 +403,7 @@
         "option_4": "25 cm",
         "correct_answer": "20 cm",
         "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. For a square with each side measuring 5 cm, the perimeter is 5 cm x 4 = 20 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -415,7 +415,7 @@
         "option_4": "30 cm\u00b2",
         "correct_answer": "24 cm\u00b2",
         "explanation": "The area of a rectangle is calculated by multiplying its length by its width. For a rectangle with a length of 6 cm and a width of 4 cm, the area is 6 cm x 4 cm = 24 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -427,7 +427,7 @@
         "option_4": "12 cm",
         "correct_answer": "6 cm",
         "explanation": "The diameter of a circle is twice the length of its radius. For a circle with a radius of 3 cm, the diameter is 3 cm x 2 = 6 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -439,7 +439,7 @@
         "option_4": "62.8 cm",
         "correct_answer": "31.4 cm",
         "explanation": "The circumference of a circle is calculated by multiplying its diameter by \u03c0 (pi). For a circle with a diameter of 10 cm, the circumference is 10 cm x 3.14 = 31.4 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -451,7 +451,7 @@
         "option_4": "36 cm\u00b3",
         "correct_answer": "27 cm\u00b3",
         "explanation": "The volume of a cube is calculated by cubing the length of one of its sides. For a cube with each side measuring 3 cm, the volume is 3 cm x 3 cm x 3 cm = 27 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -463,7 +463,7 @@
         "option_4": "Right",
         "correct_answer": "Equilateral",
         "explanation": "A triangle with all sides of equal length is called an equilateral triangle.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -475,7 +475,7 @@
         "option_4": "Equilateral",
         "correct_answer": "Right",
         "explanation": "A triangle with one angle measuring 90 degrees is called a right triangle.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -487,7 +487,7 @@
         "option_4": "360 degrees",
         "correct_answer": "180 degrees",
         "explanation": "The sum of the interior angles of a triangle is always 180 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -499,7 +499,7 @@
         "option_4": "5",
         "correct_answer": "4",
         "explanation": "A quadrilateral is a polygon with four sides.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -511,7 +511,7 @@
         "option_4": "Hexagon",
         "correct_answer": "Pentagon",
         "explanation": "A polygon with five sides is called a pentagon.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -523,7 +523,7 @@
         "option_4": "25 cm",
         "correct_answer": "20 cm",
         "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. For a square with each side measuring 5 cm, the perimeter is 5 cm + 5 cm + 5 cm + 5 cm = 20 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -535,7 +535,7 @@
         "option_4": "30 cm\u00b2",
         "correct_answer": "24 cm\u00b2",
         "explanation": "The area of a rectangle is calculated by multiplying its length by its width. For a rectangle with a length of 6 cm and a width of 4 cm, the area is 6 cm * 4 cm = 24 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -547,7 +547,7 @@
         "option_4": "Cone",
         "correct_answer": "Cube",
         "explanation": "A three-dimensional shape with six square faces is called a cube.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -559,7 +559,7 @@
         "option_4": "12 cm",
         "correct_answer": "6 cm",
         "explanation": "The diameter of a circle is twice the length of its radius. For a circle with a radius of 3 cm, the diameter is 2 * 3 cm = 6 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -571,7 +571,7 @@
         "option_4": "62.8 cm",
         "correct_answer": "31.4 cm",
         "explanation": "The circumference of a circle is calculated by multiplying its diameter by \u03c0 (pi). For a circle with a diameter of 10 cm, the circumference is 10 cm * 3.14 = 31.4 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -583,7 +583,7 @@
         "option_4": "Tangent",
         "correct_answer": "Diameter",
         "explanation": "A line that divides a circle into two equal parts is called a diameter.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     },
@@ -595,7 +595,7 @@
         "option_4": "36 cm\u00b3",
         "correct_answer": "27 cm\u00b3",
         "explanation": "The volume of a cube is calculated by cubing the length of one of its sides. For a cube with each side measuring 3 cm, the volume is 3 cm * 3 cm * 3 cm = 27 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "easy",
         "category": "quant"
     }

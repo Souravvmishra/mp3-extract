@@ -7,7 +7,7 @@
         "option_4": "60 degrees",
         "correct_answer": "120 degrees",
         "explanation": "A regular hexagon can be divided into 4 triangles, and the sum of interior angles of a triangle is 180 degrees. Therefore, the sum of interior angles of a hexagon is 720 degrees. Since it is regular, each interior angle is 720/6 = 120 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -19,7 +19,7 @@
         "option_4": "4 radians",
         "correct_answer": "2 radians",
         "explanation": "The length of an arc (L) is given by L = r\u03b8, where r is the radius and \u03b8 is the central angle in radians. Solving for \u03b8, we get \u03b8 = L/r = 10/5 = 2 radians.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -31,7 +31,7 @@
         "option_4": "9\u03c0 cm\u00b3",
         "correct_answer": "36\u03c0 cm\u00b3",
         "explanation": "The volume of a sphere is given by V = (4/3)\u03c0r\u00b3. Substituting r = 3 cm, we get V = (4/3)\u03c0(3)\u00b3 = 36\u03c0 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -43,7 +43,7 @@
         "option_4": "10 cm",
         "correct_answer": "17 cm",
         "explanation": "In a right-angled triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides. Therefore, the length of the third side is \u221a(8\u00b2 + 15\u00b2) = \u221a(64 + 225) = \u221a289 = 17 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -55,7 +55,7 @@
         "option_4": "16 cm\u00b2",
         "correct_answer": "96 cm\u00b2",
         "explanation": "The surface area of a cube is given by SA = 6s\u00b2, where s is the side length. Substituting s = 4 cm, we get SA = 6(4)\u00b2 = 6(16) = 96 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -67,7 +67,7 @@
         "option_4": "4 cm",
         "correct_answer": "8 cm",
         "explanation": "In a parallelogram, the sum of the squares of the diagonals is equal to twice the sum of the squares of the sides. Therefore, if d\u2081 and d\u2082 are the lengths of the diagonals, then d\u2081\u00b2 + d\u2082\u00b2 = 2(a\u00b2 + b\u00b2). Substituting the known values, we get 12\u00b2 + d\u2082\u00b2 = 2(5\u00b2 + 10\u00b2) \u21d2 144 + d\u2082\u00b2 = 2(25 + 100) \u21d2 144 + d\u2082\u00b2 = 250 \u21d2 d\u2082\u00b2 = 106 \u21d2 d\u2082 = \u221a106 \u2248 10.3 cm. However, since the options are integers, the closest option is 8 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -79,7 +79,7 @@
         "option_4": "6\u221a3 cm\u00b2",
         "correct_answer": "9\u221a3 cm\u00b2",
         "explanation": "The area of an equilateral triangle is given by A = (\u221a3/4)s\u00b2, where s is the side length. Substituting s = 6 cm, we get A = (\u221a3/4)(6)\u00b2 = (\u221a3/4)(36) = 9\u221a3 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -91,7 +91,7 @@
         "option_4": "20\u03c0 cm\u00b2",
         "correct_answer": "80\u03c0 cm\u00b2",
         "explanation": "The lateral surface area of a cylinder is given by LSA = 2\u03c0rh, where r is the radius and h is the height. Substituting r = 4 cm and h = 10 cm, we get LSA = 2\u03c0(4)(10) = 80\u03c0 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -103,7 +103,7 @@
         "option_4": "19 cm",
         "correct_answer": "13 cm",
         "explanation": "The length of the diagonal of a rectangular prism is given by d = \u221a(l\u00b2 + w\u00b2 + h\u00b2), where l, w, and h are the dimensions of the prism. Substituting l = 3 cm, w = 4 cm, and h = 12 cm, we get d = \u221a(3\u00b2 + 4\u00b2 + 12\u00b2) = \u221a(9 + 16 + 144) = \u221a169 = 13 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -115,7 +115,7 @@
         "option_4": "100\u03c0 cm\u00b2",
         "correct_answer": "90\u03c0 cm\u00b2",
         "explanation": "The total surface area of a cone is given by TSA = \u03c0r(r + l), where r is the base radius and l is the slant height. Substituting r = 5 cm and l = 13 cm, we get TSA = \u03c0(5)(5 + 13) = \u03c0(5)(18) = 90\u03c0 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -127,7 +127,7 @@
         "option_4": "60 degrees",
         "correct_answer": "120 degrees",
         "explanation": "A regular hexagon can be divided into 4 triangles, and the sum of interior angles of a triangle is 180 degrees. Therefore, the sum of interior angles of a hexagon is 4 * 180 = 720 degrees. Since it is regular, each interior angle is 720 / 6 = 120 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -139,7 +139,7 @@
         "option_4": "16 cm",
         "correct_answer": "10 cm",
         "explanation": "Using the Pythagorean theorem, the length of the hypotenuse is the square root of the sum of the squares of the other two sides. So, \u221a(6\u00b2 + 8\u00b2) = \u221a(36 + 64) = \u221a100 = 10 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -151,7 +151,7 @@
         "option_4": "628.3 cm\u00b3",
         "correct_answer": "523.6 cm\u00b3",
         "explanation": "The volume of a sphere is given by the formula V = (4/3)\u03c0r\u00b3. Substituting r = 5 cm, V = (4/3)\u03c0(5)\u00b3 = (4/3)\u03c0125 \u2248 523.6 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -163,7 +163,7 @@
         "option_4": "154.14 cm\u00b2",
         "correct_answer": "153.94 cm\u00b2",
         "explanation": "The area of a circle is given by the formula A = \u03c0r\u00b2. Since the diameter is 14 cm, the radius r = 7 cm. Therefore, A = \u03c0(7)\u00b2 = 49\u03c0 \u2248 153.94 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -175,7 +175,7 @@
         "option_4": "32 cm\u00b2",
         "correct_answer": "96 cm\u00b2",
         "explanation": "A cube has 6 faces, and the area of each face is the square of the side length. So, the surface area is 6 * (4 cm)\u00b2 = 6 * 16 cm\u00b2 = 96 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -187,7 +187,7 @@
         "option_4": "30 degrees",
         "correct_answer": "90 degrees",
         "explanation": "The sum of the interior angles of a triangle is 180 degrees. If two angles are 45 degrees each, the third angle is 180 - (45 + 45) = 90 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -199,7 +199,7 @@
         "option_4": "8 cm",
         "correct_answer": "5 cm",
         "explanation": "The diagonal of a rectangle can be found using the Pythagorean theorem. So, the diagonal is \u221a(3\u00b2 + 4\u00b2) = \u221a(9 + 16) = \u221a25 = 5 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -211,7 +211,7 @@
         "option_4": "35 cm",
         "correct_answer": "25 cm",
         "explanation": "A regular pentagon has 5 equal sides. Therefore, its perimeter is 5 * side length = 5 * 5 cm = 25 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -223,7 +223,7 @@
         "option_4": "22.00 cm\u00b2",
         "correct_answer": "15.59 cm\u00b2",
         "explanation": "The area of an equilateral triangle is given by the formula A = (\u221a3/4) * side\u00b2. Substituting side = 6 cm, A = (\u221a3/4) * 36 \u2248 15.59 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -235,7 +235,7 @@
         "option_4": "235.62 cm\u00b3",
         "correct_answer": "282.74 cm\u00b3",
         "explanation": "The volume of a cylinder is given by the formula V = \u03c0r\u00b2h. Substituting r = 3 cm and h = 10 cm, V = \u03c0(3)\u00b2(10) = \u03c0 * 9 * 10 \u2248 282.74 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -247,7 +247,7 @@
         "option_4": "60 degrees",
         "correct_answer": "120 degrees",
         "explanation": "A regular hexagon can be divided into 4 triangles. The sum of interior angles of a triangle is 180 degrees. Therefore, the sum of interior angles of a hexagon is 4 * 180 = 720 degrees. Since the hexagon is regular, each interior angle is 720 / 6 = 120 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -259,7 +259,7 @@
         "option_4": "16 cm",
         "correct_answer": "10 cm",
         "explanation": "Using the Pythagorean theorem, the length of the hypotenuse is the square root of the sum of the squares of the other two sides. So, \u221a(6\u00b2 + 8\u00b2) = \u221a(36 + 64) = \u221a100 = 10 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -271,7 +271,7 @@
         "option_4": "628.3 cm\u00b3",
         "correct_answer": "523.6 cm\u00b3",
         "explanation": "The volume of a sphere is given by the formula V = (4/3)\u03c0r\u00b3. Substituting r = 5 cm, V = (4/3)\u03c0(5)\u00b3 = (4/3)\u03c0125 \u2248 523.6 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -283,7 +283,7 @@
         "option_4": "154.14 cm\u00b2",
         "correct_answer": "153.94 cm\u00b2",
         "explanation": "The area of a circle is given by the formula A = \u03c0r\u00b2. Since the diameter is 14 cm, the radius r = 7 cm. Therefore, A = \u03c0(7)\u00b2 = 49\u03c0 \u2248 153.94 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -295,7 +295,7 @@
         "option_4": "175 cm\u00b2",
         "correct_answer": "150 cm\u00b2",
         "explanation": "A cube has 6 faces. The area of one face is 5 cm * 5 cm = 25 cm\u00b2. Therefore, the total surface area is 6 * 25 cm\u00b2 = 150 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -307,7 +307,7 @@
         "option_4": "70 degrees",
         "correct_answer": "80 degrees",
         "explanation": "The sum of the interior angles of a triangle is 180 degrees. Therefore, the third angle is 180 - (45 + 55) = 80 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -319,7 +319,7 @@
         "option_4": "8 cm",
         "correct_answer": "5 cm",
         "explanation": "The diagonal of a rectangle can be found using the Pythagorean theorem. So, the diagonal is \u221a(3\u00b2 + 4\u00b2) = \u221a(9 + 16) = \u221a25 = 5 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -331,7 +331,7 @@
         "option_4": "6",
         "correct_answer": "12",
         "explanation": "The sum of the exterior angles of any polygon is 360 degrees. If each exterior angle is 30 degrees, the number of sides is 360 / 30 = 12.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -343,7 +343,7 @@
         "option_4": "22.00 cm\u00b2",
         "correct_answer": "15.59 cm\u00b2",
         "explanation": "The area of an equilateral triangle is given by the formula A = (\u221a3/4) * side\u00b2. Substituting side = 6 cm, A = (\u221a3/4) * 36 \u2248 15.59 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -355,7 +355,7 @@
         "option_4": "505.00 cm\u00b3",
         "correct_answer": "502.65 cm\u00b3",
         "explanation": "The volume of a cylinder is given by the formula V = \u03c0r\u00b2h. Substituting r = 4 cm and h = 10 cm, V = \u03c0(4)\u00b2(10) = 160\u03c0 \u2248 502.65 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -367,7 +367,7 @@
         "option_4": "60 degrees",
         "correct_answer": "120 degrees",
         "explanation": "A regular hexagon can be divided into 4 triangles, and the sum of interior angles of a triangle is 180 degrees. Therefore, the sum of interior angles of a hexagon is 720 degrees. Since it is regular, each interior angle is 720/6 = 120 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -379,7 +379,7 @@
         "option_4": "16 cm",
         "correct_answer": "10 cm",
         "explanation": "Using the Pythagorean theorem, the length of the hypotenuse is the square root of the sum of the squares of the other two sides. So, \u221a(6\u00b2 + 8\u00b2) = \u221a(36 + 64) = \u221a100 = 10 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -391,7 +391,7 @@
         "option_4": "9\u03c0 cm\u00b3",
         "correct_answer": "36\u03c0 cm\u00b3",
         "explanation": "The volume of a sphere is given by the formula V = (4/3)\u03c0r\u00b3. Substituting r = 3 cm, we get V = (4/3)\u03c0(27) = 36\u03c0 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -403,7 +403,7 @@
         "option_4": "10\u03c0 cm\u00b2",
         "correct_answer": "25\u03c0 cm\u00b2",
         "explanation": "The area of a circle is given by the formula A = \u03c0r\u00b2. Since the diameter is 10 cm, the radius is 5 cm. Therefore, A = \u03c0(5)\u00b2 = 25\u03c0 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -415,7 +415,7 @@
         "option_4": "16 cm\u00b2",
         "correct_answer": "96 cm\u00b2",
         "explanation": "A cube has 6 faces, and the area of each face is the square of the edge length. So, the surface area is 6 * (4 cm)\u00b2 = 6 * 16 cm\u00b2 = 96 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -427,7 +427,7 @@
         "option_4": "105 degrees",
         "correct_answer": "75 degrees",
         "explanation": "The sum of the interior angles of a triangle is 180 degrees. Therefore, the third angle is 180 - (45 + 60) = 75 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -439,7 +439,7 @@
         "option_4": "8 cm",
         "correct_answer": "5 cm",
         "explanation": "The diagonal of a rectangle can be found using the Pythagorean theorem. So, the diagonal is \u221a(3\u00b2 + 4\u00b2) = \u221a(9 + 16) = \u221a25 = 5 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -451,7 +451,7 @@
         "option_4": "20 cm",
         "correct_answer": "10 cm",
         "explanation": "A regular pentagon has 5 equal sides. Therefore, the length of one side is the perimeter divided by 5, which is 50 cm / 5 = 10 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -463,7 +463,7 @@
         "option_4": "18\u221a3 cm\u00b2",
         "correct_answer": "9\u221a3 cm\u00b2",
         "explanation": "The area of an equilateral triangle is given by the formula A = (\u221a3/4) * side\u00b2. Substituting side = 6 cm, we get A = (\u221a3/4) * 36 = 9\u221a3 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -475,7 +475,7 @@
         "option_4": "320\u03c0 cm\u00b3",
         "correct_answer": "160\u03c0 cm\u00b3",
         "explanation": "The volume of a cylinder is given by the formula V = \u03c0r\u00b2h. Substituting r = 4 cm and h = 10 cm, we get V = \u03c0(16)(10) = 160\u03c0 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -487,7 +487,7 @@
         "option_4": "150 degrees",
         "correct_answer": "120 degrees",
         "explanation": "The formula to calculate the measure of each interior angle of a regular polygon is (n-2) * 180 / n, where n is the number of sides. For a hexagon, n=6, so the measure is (6-2) * 180 / 6 = 120 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -499,7 +499,7 @@
         "option_4": "19 cm",
         "correct_answer": "13 cm",
         "explanation": "Using the Pythagorean theorem, the length of the hypotenuse is the square root of the sum of the squares of the other two sides. So, \u221a(5\u00b2 + 12\u00b2) = \u221a(25 + 144) = \u221a169 = 13 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -511,7 +511,7 @@
         "option_4": "15.7 cm\u00b2",
         "correct_answer": "78.5 cm\u00b2",
         "explanation": "First, find the radius using the circumference formula C = 2\u03c0r. So, r = C / (2\u03c0) = 31.4 / (2 * 3.14) = 5 cm. Then, the area is \u03c0r\u00b2 = 3.14 * 5\u00b2 = 78.5 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -523,7 +523,7 @@
         "option_4": "8 cm",
         "correct_answer": "4 cm",
         "explanation": "The volume of a cube is given by V = s\u00b3, where s is the length of a side. So, s = \u221bV = \u221b64 = 4 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -535,7 +535,7 @@
         "option_4": "1232 cm\u00b2",
         "correct_answer": "616 cm\u00b2",
         "explanation": "The surface area of a sphere is given by 4\u03c0r\u00b2. So, 4 * 3.14 * 7\u00b2 = 4 * 3.14 * 49 = 616 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -547,7 +547,7 @@
         "option_4": "90 degrees",
         "correct_answer": "75 degrees",
         "explanation": "The sum of the angles in a triangle is 180 degrees. So, the third angle is 180 - (45 + 60) = 75 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -559,7 +559,7 @@
         "option_4": "16 cm",
         "correct_answer": "10 cm",
         "explanation": "The diagonal of a rectangle can be found using the Pythagorean theorem: \u221a(8\u00b2 + 6\u00b2) = \u221a(64 + 36) = \u221a100 = 10 cm.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -571,7 +571,7 @@
         "option_4": "100 cm\u00b2",
         "correct_answer": "50 cm\u00b2",
         "explanation": "The area of a parallelogram is given by base * height. So, 10 cm * 5 cm = 50 cm\u00b2.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -583,7 +583,7 @@
         "option_4": "640 cm\u00b3",
         "correct_answer": "480 cm\u00b3",
         "explanation": "The volume of a cylinder is given by \u03c0r\u00b2h. So, 3.14 * 4\u00b2 * 10 = 3.14 * 16 * 10 = 480 cm\u00b3.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     },
@@ -595,7 +595,7 @@
         "option_4": "120 degrees",
         "correct_answer": "72 degrees",
         "explanation": "The measure of an exterior angle of a regular polygon is 360 / n, where n is the number of sides. For a pentagon, n=5, so the measure is 360 / 5 = 72 degrees.",
-        "topic": "Geometry",
+        "topic": "geometry",
         "difficulty": "hard",
         "category": "quant"
     }

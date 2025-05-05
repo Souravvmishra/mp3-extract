@@ -208,7 +208,7 @@ const TestPage: React.FC = () => {
 
     const currentQ = state.selectedQuestions[state.currentQuestion];
     const progress = (state.currentQuestion / state.selectedQuestions.length) * 100;
-
+    
     return currentQ ? (
         <QuizScreen
             question={currentQ}

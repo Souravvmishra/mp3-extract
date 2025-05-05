@@ -11,11 +11,11 @@ export async function GET(req: Request) {
         // Filter based on query params if provided
         const filteredQuestions = questions.filter((q) => {
             // Handle category: if "all", include all categories; otherwise, match specific category
-            const matchCategory = category && category !== 'all' ? q.category === category : true;
+            const matchCategory = category && category !== 'all' ? q.category.toLowerCase() === category.toLowerCase() : true;
             // Handle topic: if "all", include all topics; otherwise, match specific topic
-            const matchTopic = topic && topic !== 'all' ? q.topic === topic : true;
+            const matchTopic = topic && topic !== 'all' ? q.topic.toLowerCase() === topic.toLowerCase() : true;
             // Handle difficulty: match specific difficulty if provided
-            const matchDifficulty = difficulty ? q.difficulty === difficulty : true;
+            const matchDifficulty = difficulty ? q.difficulty.toLowerCase() === difficulty.toLowerCase() : true;
             return matchCategory && matchTopic && matchDifficulty;
         });
 
@@ -23,7 +23,6 @@ export async function GET(req: Request) {
         const shuffledQuestions = [...filteredQuestions]
             .sort(() => Math.random() - 0.5)
             .slice(0, Math.min(10, filteredQuestions.length));
-
         return NextResponse.json(shuffledQuestions);
     } catch (error) {
         console.error('Error fetching questions:', error);
