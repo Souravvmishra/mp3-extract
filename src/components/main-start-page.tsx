@@ -222,7 +222,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                         <LogOut className="mr-2 h-4 w-4" />
                         Log out
                     </Button>
-                    {role === 'teacher' && <Button variant="outline" onClick={logout} className="w-full flex items-center justify-center">
+                    {role === 'teacher' && <Button variant="outline" className="w-full flex items-center justify-center">
                         <Link href="/teacher">
                             Go to Teacher Dashboard
                         </Link>

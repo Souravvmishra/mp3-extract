@@ -177,7 +177,7 @@ const TeacherDashboard: React.FC = () => {
             lastTestDate: last.toLocaleDateString(),
         };
     });
-    
+
 
     return (
         <div className="max-w-4xl mx-auto p-4 space-y-6">
@@ -193,15 +193,25 @@ const TeacherDashboard: React.FC = () => {
                     )}
                 </div>
 
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={logout}
-                    className="ml-4 text-xs text-red-600 border-red-200 hover:bg-red-50"
-                >
-                    <LogOut className="mr-1 h-3 w-3" />
-                    Log out
-                </Button>
+                <div className="flex items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={logout}
+                        className="ml-4 text-xs text-red-600 border-red-200 hover:bg-red-50 "
+                    >
+                        <LogOut className="mr-1 h-3 w-3" />
+                        Log out
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                    >
+                        <Link href="/student/quadrat">
+                            Student Dashboard
+                        </Link>
+                    </Button>
+                </div>
             </div>
 
 
