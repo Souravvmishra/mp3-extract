@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/providers/AuthProvider';
+import ReactMarkdown from 'react-markdown';
 
 // Flashcard types
 interface Flashcard {
@@ -196,7 +197,7 @@ export default function Flashcards(): JSX.Element {
                                 className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-white rounded-lg"
                                 style={{ backfaceVisibility: 'hidden' }}
                             >
-                                <div className="text-lg font-medium text-center mb-4">{current.Front}</div>
+                                <ReactMarkdown className="text-lg font-medium text-center mb-4">{current.Front}</ReactMarkdown>
                                 <div className="text-blue-500 text-sm flex items-center gap-1 mt-auto">
                                     <LucideFlipHorizontal size={16} /> Tap to flip card
                                 </div>
@@ -207,7 +208,7 @@ export default function Flashcards(): JSX.Element {
                                 className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-blue-50 rounded-lg"
                                 style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                             >
-                                <div className="text-lg text-center mb-4">{current.Back}</div>
+                                <ReactMarkdown className="text-lg text-center mb-4">{current.Back}</ReactMarkdown>
                                 <div className="text-blue-500 text-sm flex items-center gap-1 mt-auto">
                                     <LucideFlipHorizontal size={16} /> Tap to flip back
                                 </div>
