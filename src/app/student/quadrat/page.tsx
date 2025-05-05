@@ -32,6 +32,10 @@ const TestPage: React.FC = () => {
         difficulty: ''
     });
 
+    // Add loading states
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const { user } = useAuth();
 
     // Timer effect
@@ -56,6 +60,7 @@ const TestPage: React.FC = () => {
 
     const startTest = async (category: string, topic: string, difficulty: string) => {
         try {
+            setIsLoading(true);
             const params = new URLSearchParams({ category, topic, difficulty });
             const res = await fetch(`/api/questions?${params.toString()}`);
             if (!res.ok) throw new Error("Failed to fetch questions");
@@ -81,6 +86,8 @@ const TestPage: React.FC = () => {
                 description: "Failed to fetch questions. Please try again.",
                 variant: "destructive",
             });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -89,6 +96,7 @@ const TestPage: React.FC = () => {
     };
 
     const handleSubmit = async () => {
+        setIsSubmitting(true);
         const currentQ = state.selectedQuestions[state.currentQuestion];
         const isCorrect = state.selectedAnswer === currentQ.correct_answer;
         const timeSpent = Math.round((Date.now() - state.questionStartTime) / 1000);
@@ -102,6 +110,8 @@ const TestPage: React.FC = () => {
         const newResponses = [...state.responses, newResponse];
 
         if (state.currentQuestion < state.selectedQuestions.length - 1) {
+            // Set loading for next question transition
+            setIsLoading(true);
             setState((prev) => ({
                 ...prev,
                 currentQuestion: prev.currentQuestion + 1,
@@ -111,6 +121,12 @@ const TestPage: React.FC = () => {
                 timeLeft: 30,
                 questionStartTime: Date.now(),
             }));
+
+            // Small artificial delay to show loading state
+            setTimeout(() => {
+                setIsLoading(false);
+                setIsSubmitting(false);
+            }, 500);
         } else {
             const finalScore = isCorrect ? state.score + 1 : state.score;
             const totalTime = Math.round((Date.now() - state.startTime) / 1000);
@@ -160,6 +176,8 @@ const TestPage: React.FC = () => {
                     isStarted: false,
                     isCompleted: true,
                 }));
+            } finally {
+                setIsSubmitting(false);
             }
         }
     };
@@ -208,8 +226,9 @@ const TestPage: React.FC = () => {
 
     const currentQ = state.selectedQuestions[state.currentQuestion];
     const progress = (state.currentQuestion / state.selectedQuestions.length) * 100;
-    
-    return currentQ ? (
+
+    // Pass loading state to QuizScreen
+    return (
         <QuizScreen
             question={currentQ}
             currentIndex={state.currentQuestion}
@@ -219,9 +238,9 @@ const TestPage: React.FC = () => {
             selectedAnswer={state.selectedAnswer}
             onAnswerChange={handleAnswerChange}
             onSubmit={handleSubmit}
+            isLoading={isLoading || isSubmitting}
         />
-    ) : null;
-
+    );
 };
 
 export default TestPage;
