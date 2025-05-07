@@ -101,7 +101,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
                             <Brain className="w-8 h-8" />
                         </div>
                     </motion.div>
-                    <CardTitle className="text-2xl font-bold">Quadrat</CardTitle>
+                    <CardTitle className="text-2xl font-bold">Qudrat</CardTitle>
                     <CardDescription className="text-neutral-900">Challenge yourself or browse resources</CardDescription>
                 </CardHeader>
 
