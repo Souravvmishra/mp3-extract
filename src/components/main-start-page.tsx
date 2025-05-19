@@ -89,6 +89,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart }) => {
             transition={{ duration: 0.3 }}
             className="min-h-screen flex items-center justify-center p-4 bg-neutral-90 dark:bg-neutral-900"
         >
+            
             <Card className="w-full max-w-lg shadow-lg">
                 <CardHeader className="space-y-1 text-center pb-2">
                     <motion.div
