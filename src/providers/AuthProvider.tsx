@@ -4,7 +4,6 @@ import { ReactNode, createContext, useContext, useEffect, useState } from 'react
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/hooks/lib/firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-// Role selection modal
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,15 +12,12 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { GraduationCap, BookOpen, ArrowRight } from 'lucide-react';
 
-// Define user role type
 export type UserRole = 'student' | 'teacher' | null;
 
-// Define localStorage keys
-const LOCAL_STORAGE_KEY = 'loclatsoreg';
+const LOCAL_STORAGE_KEY = 'localStorageFlag'; // Fixed typo
 const USER_ROLE_KEY = 'userRole';
 const USER_EMAIL_KEY = 'userEmail';
 
-// 1. Create Context with Auth info
 interface AuthContextType {
     user: User | null;
     loading: boolean;
@@ -34,20 +30,14 @@ const AuthContext = createContext<AuthContextType>({
     role: null,
 });
 
-// 2. Provider Component
 export default function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [role, setRole] = useState<UserRole>(null);
     const [showRoleModal, setShowRoleModal] = useState(false);
-    const [selectedRole, setSelectedRole] = useState<UserRole>(null);
+    const [selectedRole, setSelectedRole] = useState<'student' | 'teacher'>('student'); // Changed from null to 'student'
     const router = useRouter();
 
-    useEffect(() => {
-        console.log(selectedRole, 'selectedRole changed');
-    }, [selectedRole]);
-
-    // Save user role & profile to Firestore and flag localStorage
     const saveUserRole = async (newRole: UserRole) => {
         if (!user || !newRole) return;
         setLoading(true);
@@ -65,9 +55,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
             window.localStorage.setItem(USER_ROLE_KEY, newRole);
             if (user.email) window.localStorage.setItem(USER_EMAIL_KEY, user.email);
             setShowRoleModal(false);
-            // Redirect user now that role is set
-            const targetPath = newRole === 'teacher' ? '/teacher' : '/student/quadrat';
-            router.push(targetPath);
         } catch (error) {
             console.error('Error setting user role:', error);
         } finally {
@@ -75,7 +62,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         }
     };
 
-    // Fetch user profile & role from Firestore
     const fetchUserProfile = async (uid: string) => {
         try {
             const ref = doc(db, 'userRoles', uid);
@@ -124,142 +110,123 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
             }
         });
         return () => unsubscribe();
-    }, [router]);
+    }, []);
 
-    // Handle role submission
     const handleRoleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (selectedRole) await saveUserRole(selectedRole);
+        if (selectedRole) await saveUserRole(selectedRole); // Check kept for type safety
     };
-
-
 
     const RoleSelectionModal = () => {
         if (!showRoleModal || !user) return null;
 
         return (
-            <Dialog open={showRoleModal} onOpenChange={() => { }}>
+            <Dialog open={showRoleModal} >
                 <DialogContent className="sm:max-w-md">
-                    <DialogHeader className="text-center space-y-3">
-                        <div className="mx-auto w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <GraduationCap className="w-6 h-6 text-white" />
-                        </div>
-                        <DialogTitle className="text-2xl font-bold">Welcome!</DialogTitle>
-                        <DialogDescription className="text-base">
-                            Choose your role to get started with a personalized experience
+                    <DialogHeader className="text-center space-y-4">
+                        <DialogTitle className="text-3xl font-bold text-gray-800">Welcome to Quadrat!</DialogTitle>
+                        <DialogDescription className="text-lg text-gray-600">
+                            Select your role to personalize your experience
                         </DialogDescription>
                     </DialogHeader>
 
                     <form onSubmit={handleRoleSubmit} className="space-y-6 mt-6">
                         <RadioGroup
-                            value={selectedRole || 'student'}
-                            onValueChange={(value) => setSelectedRole(value as UserRole)}
-                            className="space-y-3"
-                            defaultValue="student"
+                            value={selectedRole}
+                            onValueChange={(value) => setSelectedRole(value as 'student' | 'teacher')}
+                            className="space-y-4"
                         >
-                            {/* Student Option */}
-                            <div className="relative">
-                                <Label htmlFor="student" className="cursor-pointer">
-                                    <Card className={`relative overflow-hidden border-2 transition-all duration-200 hover:shadow-md ${(selectedRole || 'student') === 'student'
-                                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/50 shadow-md backdrop-blur-sm'
-                                        : 'border-border hover:border-blue-300 blur-sm opacity-50'
-                                        }`}>
-                                        <CardContent className="flex items-center p-4">
-                                            <div className="flex items-center space-x-4 flex-1">
-                                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                                                    <BookOpen className="w-6 h-6 text-white" />
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <div className="flex items-center space-x-2">
-                                                        <h3 className="font-semibold text-lg">Student</h3>
-                                                        <Badge variant="secondary" className="text-xs">
-                                                            Learn
-                                                        </Badge>
-                                                    </div>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        Access courses, assignments, and learning materials
-                                                    </p>
-                                                </div>
+                            {/* Student Card */}
+                            <Label htmlFor="student" className="cursor-pointer">
+                                <Card
+                                    className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-lg ${selectedRole === 'student'
+                                            ? 'border-blue-500 bg-blue-50 shadow-md'
+                                            : 'border-gray-200 hover:border-blue-300'
+                                        }`}
+                                >
+                                    <CardContent className="flex items-center p-4">
+                                        <div className="flex items-center space-x-4 flex-1">
+                                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                <BookOpen className="w-6 h-6 text-blue-600" />
                                             </div>
-                                            <div className={`transition-opacity duration-200 ${(selectedRole || 'student') === 'student' ? 'opacity-100' : 'opacity-0'
-                                                }`}>
-                                                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                                                    <div className="w-2 h-2 bg-white rounded-full" />
+                                            <div className="space-y-1">
+                                                <div className="flex items-center space-x-2">
+                                                    <h3 className="font-semibold text-lg text-gray-800">Student</h3>
+                                                    <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                                                        Learn
+                                                    </Badge>
                                                 </div>
+                                                <p className="text-sm text-gray-600">
+                                                    Access courses, assignments, and learning materials
+                                                </p>
                                             </div>
-                                        </CardContent>
-                                    </Card>
-                                </Label>
-                                <RadioGroupItem
-                                    value="student"
-                                    id="student"
-                                    className="sr-only"
-                                />
-                            </div>
+                                        </div>
+                                        <div
+                                            className={`transition-opacity duration-200 ${selectedRole === 'student' ? 'opacity-100' : 'opacity-0'
+                                                }`}
+                                        >
+                                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                                <div className="w-2 h-2 bg-white rounded-full" />
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Label>
+                            <RadioGroupItem value="student" id="student" className="sr-only" />
 
-                            {/* Teacher Option */}
-                            <div className="relative">
-                                <Label htmlFor="teacher" className="cursor-pointer">
-                                    <Card className={`relative overflow-hidden border-2 transition-all duration-200 hover:shadow-md ${(selectedRole || 'student') === 'teacher'
-                                        ? 'border-purple-500 bg-purple-50 dark:bg-purple-950/50 shadow-md'
-                                        : 'border-border hover:border-purple-300 blur-sm opacity-50'
-                                        }`}>
-                                        <CardContent className="flex items-center p-4">
-                                            <div className="flex items-center space-x-4 flex-1">
-                                                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                                                    <GraduationCap className="w-6 h-6 text-white" />
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <div className="flex items-center space-x-2">
-                                                        <h3 className="font-semibold text-lg">Teacher</h3>
-                                                        <Badge variant="secondary" className="text-xs">
-                                                            Teach
-                                                        </Badge>
-                                                    </div>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        Create courses, manage students, and track progress
-                                                    </p>
-                                                </div>
+                            {/* Teacher Card */}
+                            <Label htmlFor="teacher" className="cursor-pointer">
+                                <Card
+                                    className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-lg ${selectedRole === 'teacher'
+                                            ? 'border-blue-500 bg-blue-50 shadow-md'
+                                            : 'border-gray-200 hover:border-blue-300'
+                                        }`}
+                                >
+                                    <CardContent className="flex items-center p-4">
+                                        <div className="flex items-center space-x-4 flex-1">
+                                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                <GraduationCap className="w-6 h-6 text-blue-600" />
                                             </div>
-                                            <div className={`transition-opacity duration-200 ${(selectedRole || 'student') === 'teacher' ? 'opacity-100' : 'opacity-0'
-                                                }`}>
-                                                <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-                                                    <div className="w-2 h-2 bg-white rounded-full" />
+                                            <div className="space-y-1">
+                                                <div className="flex items-center space-x-2">
+                                                    <h3 className="font-semibold text-lg text-gray-800">Teacher</h3>
+                                                    <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                                                        Teach
+                                                    </Badge>
                                                 </div>
+                                                <p className="text-sm text-gray-600">
+                                                    Create courses, manage students, and track progress
+                                                </p>
                                             </div>
-                                        </CardContent>
-                                    </Card>
-                                </Label>
-                                <RadioGroupItem
-                                    value="teacher"
-                                    id="teacher"
-                                    className="sr-only"
-                                />
-                            </div>
+                                        </div>
+                                        <div
+                                            className={`transition-opacity duration-200 ${selectedRole === 'teacher' ? 'opacity-100' : 'opacity-0'
+                                                }`}
+                                        >
+                                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                                <div className="w-2 h-2 bg-white rounded-full" />
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Label>
+                            <RadioGroupItem value="teacher" id="teacher" className="sr-only" />
                         </RadioGroup>
 
                         <Button
                             type="submit"
-                            disabled={!selectedRole}
-                            className="w-full h-12 text-base font-semibold"
+                            className="w-full h-12 text-base font-semibold bg-blue-600 hover:bg-blue-700 text-white"
                             size="lg"
                         >
-                            {(selectedRole || 'student') ? (
-                                <>
-                                    Continue as {(selectedRole || 'student').charAt(0).toUpperCase() + (selectedRole || 'student').slice(1)}
-                                    <ArrowRight className="w-4 h-4 ml-2" />
-                                </>
-                            ) : (
-                                'Select a role to continue'
-                            )}
+                            Continue as {selectedRole.charAt(0).toUpperCase() + selectedRole.slice(1)}
+                            <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                     </form>
                 </DialogContent>
             </Dialog>
         );
-    };
+      };
 
-    // Loading state
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -277,5 +244,4 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     );
 }
 
-// 3. Custom Hook
 export const useAuth = () => useContext(AuthContext);

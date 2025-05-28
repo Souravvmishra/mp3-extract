@@ -8,9 +8,28 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AlertCircle } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/providers/AuthProvider';
+
+// Map Firebase error codes to user-friendly messages
+const getFriendlyErrorMessage = (error: unknown): string => {
+    const errorCode = typeof error === 'object' && error !== null && 'code' in error ? (error as { code: string }).code : 'unknown';
+    const errorMessages: { [key: string]: string } = {
+        'auth/invalid-email': 'The email address is not valid. Please check and try again.',
+        'auth/user-not-found': 'No account found with this email. Please sign up or try a different email.',
+        'auth/wrong-password': 'Incorrect password. Please try again or reset your password.',
+        'auth/email-already-in-use': 'This email is already registered. Please sign in or use a different email.',
+        'auth/weak-password': 'The password is too weak. Please use at least 8 characters, including letters and numbers.',
+        'auth/too-many-requests': 'Too many attempts. Please wait a moment and try again.',
+        'auth/network-request-failed': 'Network error. Please check your internet connection and try again.',
+        'auth/popup-closed-by-user': 'Google sign-in was canceled. Please try again.',
+        'auth/cancelled-popup-request': 'Google sign-in was interrupted. Please try again.',
+        default: 'An unexpected error occurred. Please try again later.'
+    };
+
+    return errorMessages[errorCode] || errorMessages['default'];
+};
 
 export default function AuthPage() {
     const router = useRouter();
@@ -36,9 +55,9 @@ export default function AuthPage() {
         try {
             await signInWithGoogle();
             // Redirect will happen in useEffect once role is loaded
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Google authentication failed', error);
-            setError('Google authentication failed. Please try again.');
+            setError(getFriendlyErrorMessage(error));
         } finally {
             setLoading(false);
         }
@@ -52,9 +71,9 @@ export default function AuthPage() {
         try {
             await signInWithEmail(email, password);
             // Redirect will happen in useEffect once role is loaded
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Login failed', error);
-            setError('Login failed. Please verify your credentials and try again.');
+            setError(getFriendlyErrorMessage(error));
         } finally {
             setLoading(false);
         }
@@ -66,7 +85,7 @@ export default function AuthPage() {
         setError('');
 
         if (password !== confirmPassword) {
-            setError('Passwords do not match.');
+            setError('Passwords do not match. Please ensure both passwords are identical.');
             setLoading(false);
             return;
         }
@@ -74,9 +93,9 @@ export default function AuthPage() {
         try {
             await signUpWithEmail(email, password);
             // Redirect will happen in useEffect once role is loaded
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Sign up failed', error);
-            setError('Sign up failed. Please check your information and try again.');
+            setError(getFriendlyErrorMessage(error));
         } finally {
             setLoading(false);
         }
@@ -124,14 +143,12 @@ export default function AuthPage() {
                                 variant="outline"
                                 disabled={loading}
                             >
-                                {/* Google Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
                                     {/* paths omitted for brevity */}
                                 </svg>
                                 {loading ? 'Signing in...' : 'Continue with Google'}
                             </Button>
 
-                            {/* Divider */}
                             <div className="flex items-center">
                                 <hr className="flex-grow border-gray-200" />
                                 <span className="px-2 text-gray-400 text-sm">or sign in with email</span>
@@ -142,6 +159,7 @@ export default function AuthPage() {
                             {error && (
                                 <Alert variant="destructive" className="border-red-200 bg-red-50">
                                     <AlertCircle className="h-4 w-4" />
+                                    <AlertTitle>Error</AlertTitle>
                                     <AlertDescription>{error}</AlertDescription>
                                 </Alert>
                             )}
@@ -158,6 +176,8 @@ export default function AuthPage() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="bg-white"
                                         required
+                                        aria-invalid={error ? 'true' : 'false'}
+                                        aria-describedby={error ? 'login-error' : undefined}
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -170,6 +190,8 @@ export default function AuthPage() {
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="bg-white"
                                         required
+                                        aria-invalid={error ? 'true' : 'false'}
+                                        aria-describedby={error ? 'login-error' : undefined}
                                     />
                                 </div>
                                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={loading}>
@@ -187,14 +209,12 @@ export default function AuthPage() {
                                 variant="outline"
                                 disabled={loading}
                             >
-                                {/* Google Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20px" height="20px">
                                     {/* paths omitted for brevity */}
                                 </svg>
                                 {loading ? 'Signing up...' : 'Sign up with Google'}
                             </Button>
 
-                            {/* Divider */}
                             <div className="flex items-center">
                                 <hr className="flex-grow border-gray-200" />
                                 <span className="px-2 text-gray-400 text-sm">or sign up with email</span>
@@ -205,6 +225,7 @@ export default function AuthPage() {
                             {error && (
                                 <Alert variant="destructive" className="border-red-200 bg-red-50">
                                     <AlertCircle className="h-4 w-4" />
+                                    <AlertTitle>Error</AlertTitle>
                                     <AlertDescription>{error}</AlertDescription>
                                 </Alert>
                             )}
@@ -221,6 +242,8 @@ export default function AuthPage() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="bg-white"
                                         required
+                                        aria-invalid={error ? 'true' : 'false'}
+                                        aria-describedby={error ? 'signup-error' : undefined}
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -234,6 +257,8 @@ export default function AuthPage() {
                                         className="bg-white"
                                         required
                                         minLength={8}
+                                        aria-invalid={error ? 'true' : 'false'}
+                                        aria-describedby={error ? 'signup-error' : undefined}
                                     />
                                     <p className="text-xs text-gray-500 mt-1">Must be at least 8 characters</p>
                                 </div>
@@ -247,6 +272,8 @@ export default function AuthPage() {
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                         className="bg-white"
                                         required
+                                        aria-invalid={error ? 'true' : 'false'}
+                                        aria-describedby={error ? 'signup-error' : undefined}
                                     />
                                 </div>
                                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={loading}>
