@@ -1,9 +1,17 @@
 'use client';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { auth, db } from '@/hooks/lib/firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+// Role selection modal
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { GraduationCap, BookOpen, ArrowRight } from 'lucide-react';
 
 // Define user role type
 export type UserRole = 'student' | 'teacher' | null;
@@ -34,8 +42,10 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     const [showRoleModal, setShowRoleModal] = useState(false);
     const [selectedRole, setSelectedRole] = useState<UserRole>(null);
     const router = useRouter();
-    const pathname = usePathname();
-    const isLoginPage = pathname === '/login';
+
+    useEffect(() => {
+        console.log(selectedRole, 'selectedRole changed');
+    }, [selectedRole]);
 
     // Save user role & profile to Firestore and flag localStorage
     const saveUserRole = async (newRole: UserRole) => {
@@ -55,6 +65,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
             window.localStorage.setItem(USER_ROLE_KEY, newRole);
             if (user.email) window.localStorage.setItem(USER_EMAIL_KEY, user.email);
             setShowRoleModal(false);
+            // Redirect user now that role is set
+            const targetPath = newRole === 'teacher' ? '/teacher' : '/student/quadrat';
+            router.push(targetPath);
         } catch (error) {
             console.error('Error setting user role:', error);
         } finally {
@@ -71,14 +84,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
                 const data = snap.data();
                 const savedRole = data.role as UserRole;
                 const savedEmail = data.email as string | undefined;
-                // ensure both role and email exist
                 if (savedRole && savedEmail) {
                     setRole(savedRole);
                     window.localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
                     window.localStorage.setItem(USER_ROLE_KEY, savedRole);
                     window.localStorage.setItem(USER_EMAIL_KEY, savedEmail);
                 } else {
-                    // missing info, prompt
                     setShowRoleModal(true);
                 }
             } else {
@@ -105,7 +116,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
             const hasSaved = window.localStorage.getItem(LOCAL_STORAGE_KEY) === 'true';
             const savedRole = window.localStorage.getItem(USER_ROLE_KEY) as UserRole;
             const savedEmail = window.localStorage.getItem(USER_EMAIL_KEY);
-            // check localStorage and current auth email match
             if (hasSaved && savedRole && savedEmail === fbUser.email) {
                 setRole(savedRole);
                 setLoading(false);
@@ -122,45 +132,130 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         if (selectedRole) await saveUserRole(selectedRole);
     };
 
-    // Role selection modal
+
+
     const RoleSelectionModal = () => {
         if (!showRoleModal || !user) return null;
+
         return (
-            <div className="fixed inset-0 bg-black backdrop-blur-sm flex items-center justify-center z-50">
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full mx-4 overflow-hidden">
-                    <div className="p-6">
-                        <h2 className="text-xl font-semibold">Select Your Role</h2>
-                        <p className="mt-2 text-sm">Please select whether you are a student or teacher.</p>
-                        <form onSubmit={handleRoleSubmit} className="mt-6 space-y-4">
-                            <label className="flex items-center p-3 border rounded-md cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    onChange={() => setSelectedRole('student')}
-                                    checked={selectedRole === 'student'}
+            <Dialog open={showRoleModal} onOpenChange={() => { }}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader className="text-center space-y-3">
+                        <div className="mx-auto w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <GraduationCap className="w-6 h-6 text-white" />
+                        </div>
+                        <DialogTitle className="text-2xl font-bold">Welcome!</DialogTitle>
+                        <DialogDescription className="text-base">
+                            Choose your role to get started with a personalized experience
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <form onSubmit={handleRoleSubmit} className="space-y-6 mt-6">
+                        <RadioGroup
+                            value={selectedRole || 'student'}
+                            onValueChange={(value) => setSelectedRole(value as UserRole)}
+                            className="space-y-3"
+                            defaultValue="student"
+                        >
+                            {/* Student Option */}
+                            <div className="relative">
+                                <Label htmlFor="student" className="cursor-pointer">
+                                    <Card className={`relative overflow-hidden border-2 transition-all duration-200 hover:shadow-md ${(selectedRole || 'student') === 'student'
+                                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/50 shadow-md backdrop-blur-sm'
+                                        : 'border-border hover:border-blue-300 blur-sm opacity-50'
+                                        }`}>
+                                        <CardContent className="flex items-center p-4">
+                                            <div className="flex items-center space-x-4 flex-1">
+                                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                                                    <BookOpen className="w-6 h-6 text-white" />
+                                                </div>
+                                                <div className="space-y-1">
+                                                    <div className="flex items-center space-x-2">
+                                                        <h3 className="font-semibold text-lg">Student</h3>
+                                                        <Badge variant="secondary" className="text-xs">
+                                                            Learn
+                                                        </Badge>
+                                                    </div>
+                                                    <p className="text-sm text-muted-foreground">
+                                                        Access courses, assignments, and learning materials
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className={`transition-opacity duration-200 ${(selectedRole || 'student') === 'student' ? 'opacity-100' : 'opacity-0'
+                                                }`}>
+                                                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                                                    <div className="w-2 h-2 bg-white rounded-full" />
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </Label>
+                                <RadioGroupItem
+                                    value="student"
+                                    id="student"
+                                    className="sr-only"
                                 />
-                                <span className="ml-2">Student</span>
-                            </label>
-                            <label className="flex items-center p-3 border rounded-md cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    onChange={() => setSelectedRole('teacher')}
-                                    checked={selectedRole === 'teacher'}
+                            </div>
+
+                            {/* Teacher Option */}
+                            <div className="relative">
+                                <Label htmlFor="teacher" className="cursor-pointer">
+                                    <Card className={`relative overflow-hidden border-2 transition-all duration-200 hover:shadow-md ${(selectedRole || 'student') === 'teacher'
+                                        ? 'border-purple-500 bg-purple-50 dark:bg-purple-950/50 shadow-md'
+                                        : 'border-border hover:border-purple-300 blur-sm opacity-50'
+                                        }`}>
+                                        <CardContent className="flex items-center p-4">
+                                            <div className="flex items-center space-x-4 flex-1">
+                                                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                                    <GraduationCap className="w-6 h-6 text-white" />
+                                                </div>
+                                                <div className="space-y-1">
+                                                    <div className="flex items-center space-x-2">
+                                                        <h3 className="font-semibold text-lg">Teacher</h3>
+                                                        <Badge variant="secondary" className="text-xs">
+                                                            Teach
+                                                        </Badge>
+                                                    </div>
+                                                    <p className="text-sm text-muted-foreground">
+                                                        Create courses, manage students, and track progress
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className={`transition-opacity duration-200 ${(selectedRole || 'student') === 'teacher' ? 'opacity-100' : 'opacity-0'
+                                                }`}>
+                                                <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                                                    <div className="w-2 h-2 bg-white rounded-full" />
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </Label>
+                                <RadioGroupItem
+                                    value="teacher"
+                                    id="teacher"
+                                    className="sr-only"
                                 />
-                                <span className="ml-2">Teacher</span>
-                            </label>
-                            <button
-                                type="submit"
-                                disabled={!selectedRole}
-                                className="w-full py-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
-                            >
-                                Continue
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                            </div>
+                        </RadioGroup>
+
+                        <Button
+                            type="submit"
+                            disabled={!selectedRole}
+                            className="w-full h-12 text-base font-semibold"
+                            size="lg"
+                        >
+                            {(selectedRole || 'student') ? (
+                                <>
+                                    Continue as {(selectedRole || 'student').charAt(0).toUpperCase() + (selectedRole || 'student').slice(1)}
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </>
+                            ) : (
+                                'Select a role to continue'
+                            )}
+                        </Button>
+                    </form>
+                </DialogContent>
+            </Dialog>
         );
     };
 
@@ -176,7 +271,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
     return (
         <AuthContext.Provider value={{ user, loading, role }}>
-            {isLoginPage || (user && role) ? children : <RoleSelectionModal />}
+            {children}
+            {user && !role && <RoleSelectionModal />}
         </AuthContext.Provider>
     );
 }
